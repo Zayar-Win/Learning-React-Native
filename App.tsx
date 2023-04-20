@@ -13,12 +13,16 @@ import {
   FlatList,
   Image,
   ImageBackground,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 
@@ -210,6 +214,22 @@ function App(): JSX.Element {
             <Text style={styles.imageText}>Hello i am text</Text>
           </ImageBackground>
         </View>
+        <View>
+          <Text style={styles.title}>Using KeyBoardAvoiding Component</Text>
+          <KeyboardAvoidingView
+            keyboardVerticalOffset={1000}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <View style={styles.inner}>
+                <Text style={styles.text}>UserName</Text>
+                <TextInput style={styles.input} placeholder="Enter your name" />
+                <View>
+                  <Button title="Submit" />
+                </View>
+              </View>
+            </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
+        </View>
       </FlatListBasics>
     </SafeAreaView>
   );
@@ -257,6 +277,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'black',
     borderRadius: 4,
+  },
+  inner: {
+    flex: 1,
+    gap: 40,
+  },
+  input: {
+    height: 40,
+    borderBottomWidth: 1,
+    borderBottomColor: '#000000',
   },
 });
 
