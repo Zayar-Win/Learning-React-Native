@@ -5,27 +5,38 @@
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, {useState} from 'react';
 import {
+  Button,
   Image,
-  SafeAreaView,
   ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   TextInput,
-  useColorScheme,
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+type CatProps = {
+  name: string;
+};
+
+function Cat(props: CatProps) {
+  const [hungry, setHungry] = useState(true);
+  return (
+    <View>
+      <Text>
+        I am {props.name}.I am so {hungry ? 'hungry' : 'full'}
+      </Text>
+      <Button
+        title="PURE ME SOME MILK"
+        onPress={() => {
+          setHungry(false);
+        }}
+        disabled={!hungry}
+      />
+    </View>
+  );
+}
 
 function App(): JSX.Element {
   return (
@@ -44,6 +55,9 @@ function App(): JSX.Element {
         defaultValue="This is default value"
         style={{height: 40, width: '100%', borderColor: 'gray', borderWidth: 1}}
       />
+      <Cat name="Kitty" />
+      <Cat name="Pussy" />
+      <Cat name="Lovely" />
     </ScrollView>
   );
 }
