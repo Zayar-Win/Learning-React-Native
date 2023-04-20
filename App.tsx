@@ -12,6 +12,7 @@ import {
   Button,
   FlatList,
   Image,
+  ImageBackground,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -201,6 +202,14 @@ function App(): JSX.Element {
             }
           />
         </ScrollView>
+        <View>
+          <Text style={styles.title}>Using BackgroundImage Component</Text>
+          <ImageBackground
+            source={{uri: 'https://reactnative.dev/img/tiny_logo.png'}}
+            style={styles.bgImage}>
+            <Text style={styles.imageText}>Hello i am text</Text>
+          </ImageBackground>
+        </View>
       </FlatListBasics>
     </SafeAreaView>
   );
@@ -235,6 +244,19 @@ const styles = StyleSheet.create({
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
+  },
+  bgImage: {
+    width: '100%',
+    height: 200,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  imageText: {
+    backgroundColor: '#FFFFFF',
+    padding: 10,
+    fontSize: 18,
+    color: 'black',
+    borderRadius: 4,
   },
 });
 
