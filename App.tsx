@@ -7,7 +7,9 @@
 
 import React, {useState} from 'react';
 import {
+  ActivityIndicator,
   Button,
+  FlatList,
   Image,
   ScrollView,
   StyleSheet,
@@ -38,7 +40,28 @@ function Cat(props: CatProps) {
   );
 }
 
+function FlatListBasics() {
+  return (
+    <FlatList
+      data={[
+        {key: 'Devin'},
+        {key: 'Dan'},
+        {key: 'Dominic'},
+        {key: 'Jackson'},
+        {key: 'James'},
+        {key: 'Joel'},
+        {key: 'John'},
+        {key: 'Jillian'},
+        {key: 'Jimmy'},
+        {key: 'Julie'},
+      ]}
+      renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+    />
+  );
+}
+
 function App(): JSX.Element {
+  const [text, setText] = useState('');
   return (
     <ScrollView contentContainerStyle={styles.view}>
       <Text style={styles.text}>Try Editing me 👀</Text>
@@ -51,28 +74,56 @@ function App(): JSX.Element {
           style={{width: 200, height: 200}}
         />
       </View>
-      <TextInput
-        defaultValue="This is default value"
-        style={{height: 40, width: '100%', borderColor: 'gray', borderWidth: 1}}
-      />
+
+      <Cat name="Kitty" />
+      <Cat name="Kitty" />
+      <Cat name="Kitty" />
+      <Cat name="Kitty" />
+      <Cat name="Kitty" />
+      <Cat name="Kitty" />
+      <Cat name="Kitty" />
+      <Cat name="Kitty" />
+      <Cat name="Kitty" />
       <Cat name="Kitty" />
       <Cat name="Pussy" />
       <Cat name="Lovely" />
+      <TextInput
+        placeholder="Type something"
+        onChangeText={newText => setText(newText)}
+        style={{
+          height: 40,
+          width: '100%',
+          borderColor: 'gray',
+          borderWidth: 1,
+        }}
+      />
+      <Text>
+        {text
+          .split(' ')
+          .map(word => word && '👋')
+          .join(' ')}
+      </Text>
+      <ActivityIndicator size="large" color="red" animating={false} />
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   view: {
-    flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
     padding: 10,
+    marginBottom: 30,
   },
   text: {
     fontSize: 20,
     color: '#000000',
     fontWeight: 'bold',
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
   },
 });
 
